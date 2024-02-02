@@ -1,8 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette import status
 
 app = FastAPI()
+
+app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", status_code=status.HTTP_200_OK, tags=["Home-page"])
@@ -46,8 +49,12 @@ def home_page():
                     </div>
                 </section>
             </article>
+            <figure style="width: 50%; display: block; margin-left: auto; margin-right: auto; padding: 0.5rem 0 6rem 0; ">
+                <img src="http://127.0.0.1:8000/static/small_mac.jpg" alt="pequeña mac" style="width: -webkit-fill-available; border-radius: 1.51rem">
+                <figcaption>La pequeña mac &#129401;</figcaption>
+            </figure>
         </main>
-        <footer style="color: #fff; display: flex; justify-content: center; height: auto; padding: 1.6rem; background: #fa9500; position: fixed; bottom: 0; left: 0; right: 0; height: 30px;">
+        <footer style="color: #fff; display: flex; justify-content: center; height: auto; padding: 1.6rem; background: #fa9500; position: fixed; bottom: 0; left: 0; right: 0; height: 2rem;">
             <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener noreferrer" style="color: white; font-size: 2rem;">Docs &#128424;&#65039;</a>
         </footer>
     </body>
