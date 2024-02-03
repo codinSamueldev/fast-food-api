@@ -28,9 +28,8 @@ def home_page():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fast-food</title>
-        <style>
-
-        </style>
+        <link rel="icon" href="http://127.0.0.1:8000/static/python_icon.png">
+        <a style="visibility: hidden;" target="_blank" href="https://icons8.com/icon/YX03OUiHE3rz/python">Python</a> icon by <a style="visibility: hidden;" target="_blank" href="https://icons8.com">Icons8</a>
     </head>
     <body style="font-family: 'Kanit', sans-serif; margin: 0; padding: 0; background: black;">
         <main style="text-align: center; color: white;">
