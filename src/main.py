@@ -3,9 +3,17 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette import status
 
-app = FastAPI()
+from routers import meals
+from config.database import engine, Base
+from middleware.error_handler import ErrorHandler
 
+
+app = FastAPI()
+app.include_router(meals.meals_router)
+app.add_middleware(ErrorHandler)
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+
+Base.metadata.create_all(bind=engine)
 
 
 @app.get("/", status_code=status.HTTP_200_OK, tags=["Home-page"])
