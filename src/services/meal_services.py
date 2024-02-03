@@ -1,9 +1,8 @@
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from starlette import status
 from models.food import Meal as MealModel
 from schemas.meal_pydantic_model import Food
-from exceptions.meal_exceptions import MEAL_ID_EXCEPTION
+from exceptions.meal_exceptions import MEAL_ID_EXCEPTION, NOT_FOUND_EXCEPTION
 
 
 class MealMethods:
@@ -15,7 +14,7 @@ class MealMethods:
         all_meals = self.db.query(MealModel).all()
 
         if not all_meals:
-            return JSONResponse(content={"message": "No se encontró información en la base de datos."}, status_code=status.HTTP_404_NOT_FOUND)
+            raise NOT_FOUND_EXCEPTION
 
         return all_meals
 
@@ -30,7 +29,7 @@ class MealMethods:
 
 
     def add_new_meal(self, new_meal_data: Food):
-        new_meal = MealModel(**jsonable_encoder(dict(new_meal_data)))
+        new_meal = MealModel(**new_meal_data.model_dump())
 
         self.db.add(new_meal)
         self.db.commit()
