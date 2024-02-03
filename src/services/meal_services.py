@@ -1,5 +1,3 @@
-from fastapi.responses import JSONResponse
-from starlette import status
 from models.food import Meal as MealModel
 from schemas.meal_pydantic_model import Food
 from exceptions.meal_exceptions import MEAL_ID_EXCEPTION, NOT_FOUND_EXCEPTION
@@ -32,6 +30,16 @@ class MealMethods:
         new_meal = MealModel(**new_meal_data.model_dump())
 
         self.db.add(new_meal)
+        self.db.commit()
+
+
+    def update_meal_attribute(self, id: int, data_to_update: Food):
+        meal_to_update = self.get_meal(id=id)
+
+        meal_to_update.meal_name = data_to_update.meal_name
+        meal_to_update.meal_ingredients = data_to_update.meal_ingredients
+        meal_to_update.meal_price = data_to_update.meal_price
+
         self.db.commit()
 
 

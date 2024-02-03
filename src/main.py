@@ -12,6 +12,8 @@ app = FastAPI()
 app.include_router(meals.meals_router)
 app.add_middleware(ErrorHandler)
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+app.title="Fast-food API"
+app.version="1.0"
 
 Base.metadata.create_all(bind=engine)
 
