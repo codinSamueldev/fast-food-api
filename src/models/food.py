@@ -8,4 +8,4 @@ class Meal(Base):
     meal_id = Column(Integer, primary_key=True)
     meal_name = Column(String)
     meal_ingredients = Column(String)
-    meal_price = Column(Float)
+    meal_price = Column(Float(10, 3))
