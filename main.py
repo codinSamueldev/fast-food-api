@@ -13,7 +13,7 @@ app = FastAPI()
 app.include_router(meals.meals_router)
 app.include_router(jwt_security_flow.security_router)
 app.add_middleware(ErrorHandler)
-app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+app.mount(path="/src/static/", app=StaticFiles(directory="src/static/"), name="static")
 app.title="Fast-food API"
 app.version="1.0"
 
@@ -32,7 +32,7 @@ def home_page():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fast-food</title>
-        <link rel="icon" href="static/python_icon.png">
+        <link rel="icon" href="/src/static/python_icon.png">
         <a style="visibility: hidden;" target="_blank" href="https://icons8.com/icon/YX03OUiHE3rz/python">Python</a> icon by <a style="visibility: hidden;" target="_blank" href="https://icons8.com">Icons8</a>
     </head>
     <body style="font-family: 'Kanit', sans-serif; margin: 0; padding: 0; background: black;">
@@ -61,7 +61,7 @@ def home_page():
                 </section>
             </article>
             <figure style="width: 50%; display: block; margin-left: auto; margin-right: auto; padding: 0.5rem 0 6rem 0; ">
-                <img src="static/small_mac.jpg" alt="pequeña mac" style="width: -webkit-fill-available; border-radius: 1.51rem">
+                <img src="/src/static/small_mac.jpg" alt="pequeña mac" style="width: -webkit-fill-available; border-radius: 1.51rem">
                 <figcaption>La pequeña mac &#129401;</figcaption>
             </figure>
         </main>
