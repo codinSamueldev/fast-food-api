@@ -66,7 +66,7 @@ def home_page():
             </figure>
         </main>
         <footer style="color: #fff; display: flex; justify-content: center; height: auto; padding: 1.6rem; background: #fa9500; position: fixed; bottom: 0; left: 0; right: 0; height: 2rem;">
-            <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener noreferrer" style="color: white; font-size: 2rem;">Docs &#128424;&#65039;</a>
+            <a href="localhost:3123/docs" target="_blank" rel="noopener noreferrer" style="color: white; font-size: 2rem;">Docs &#128424;&#65039;</a>
         </footer>
     </body>
 </html>
