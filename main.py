@@ -3,16 +3,16 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette import status
 
-from routers import meals
-from routers.security import jwt_security_flow
-from config.database import engine, Base
-from middleware.error_handler import ErrorHandler
+from src.routers import meals
+from src.routers.security import jwt_security_flow
+from src.config.database import engine, Base
+from src.middleware.error_handler import ErrorHandler
 
 
 app = FastAPI()
 app.include_router(meals.meals_router)
 app.include_router(jwt_security_flow.security_router)
-# app.add_middleware(ErrorHandler)
+app.add_middleware(ErrorHandler)
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 app.title="Fast-food API"
 app.version="1.0"
