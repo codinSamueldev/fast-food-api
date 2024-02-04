@@ -1,4 +1,4 @@
-from config.database import Base
+from src.config.database import Base
 from sqlalchemy import Column, Integer, Float, String
 
 class Meal(Base):

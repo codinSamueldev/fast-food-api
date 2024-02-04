@@ -8,11 +8,11 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv
 from typing import Annotated
-from exceptions.security_exceptions import CREDENTIALS_EXCEPTION
-from schemas.user_pydantic_model import User as UserPydanticModel
-from schemas.token_pydantic_model import Token
-from config.database import local_session
-from models.users import User as UserDBModel
+from src.exceptions.security_exceptions import CREDENTIALS_EXCEPTION
+from src.schemas.user_pydantic_model import User as UserPydanticModel
+from src.schemas.token_pydantic_model import Token
+from src.config.database import local_session
+from src.models.users import User as UserDBModel
 
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")

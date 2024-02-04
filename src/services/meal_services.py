@@ -1,6 +1,6 @@
-from models.food import Meal as MealModel
-from schemas.meal_pydantic_model import Food
-from exceptions.meal_exceptions import MEAL_ID_EXCEPTION, NOT_FOUND_EXCEPTION
+from src.models.food import Meal as MealModel
+from src.schemas.meal_pydantic_model import Food
+from src.exceptions.meal_exceptions import MEAL_ID_EXCEPTION, NOT_FOUND_EXCEPTION
 
 
 class MealMethods:
