@@ -1,11 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from starlette import status
+from typing import Annotated
 
 from services.meal_services import MealMethods
 from schemas.meal_pydantic_model import Food
 from config.database import local_session
+from .security.jwt_security_flow import oauth2_bearer
 
 DB = local_session()
 
@@ -14,7 +16,7 @@ meals_router = APIRouter(prefix="/food", tags=["MEALS"])
 
 
 @meals_router.get("/", status_code=status.HTTP_200_OK, response_model=Food, description="Obten todos los alimentos disponibles almacenados en la base de datos; si no hay alimentos almacenados retornará un error.")
-def get_meals(): return JSONResponse(content=jsonable_encoder(MealMethods(DB).get_all_meals_available()), status_code=status.HTTP_200_OK)
+def get_meals(token: Annotated[str, Depends(oauth2_bearer)]): return JSONResponse(content=jsonable_encoder(MealMethods(DB).get_all_meals_available()), status_code=status.HTTP_200_OK)
 
 
 @meals_router.get("/{id}", status_code=status.HTTP_200_OK, description="Obten un alimento almacenado en la base de datos; si no se encuentra retornará un error.")
@@ -38,7 +40,7 @@ def update_meal(id: int, data: Food):
 
 
 @meals_router.delete("/", status_code=status.HTTP_200_OK)
-def delete_all():
+def delete_all(token: Annotated[str, Depends(oauth2_bearer)]):
     """ USAR BAJO RESPONSABILIDAD. Puedes eliminar todos los alimentos almacenados de la base de datos. """
     MealMethods(DB).delete_all_meals_stored()
 
