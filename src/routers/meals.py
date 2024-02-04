@@ -4,10 +4,10 @@ from fastapi.encoders import jsonable_encoder
 from starlette import status
 from typing import Annotated
 
-from services.meal_services import MealMethods
-from schemas.meal_pydantic_model import Food
-from config.database import local_session
-from .security.jwt_security_flow import oauth2_bearer
+from src.services.meal_services import MealMethods
+from src.schemas.meal_pydantic_model import Food
+from src.config.database import local_session
+from src.routers.security.jwt_security_flow import oauth2_bearer
 
 DB = local_session()
 
